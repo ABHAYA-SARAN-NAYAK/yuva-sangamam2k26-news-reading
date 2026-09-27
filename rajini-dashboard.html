@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Yuva Rajini-fied Sangamam — News Reading Dashboard</title>
+  <meta name="description" content="Official Teleprompter Dashboard for the Yuva Rajini-fied Sangamam 2025 Intra-Collegiate News Reading Competition at A.M. Jain College, Chennai. Celebrating 51 Years of Rajinikanth.">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================================
+       MASTHEAD
+       ================================ -->
+  <header id="masthead">
+    <div class="container-fluid">
+      <div class="masthead-meta d-flex flex-wrap justify-content-between align-items-center">
+        <span class="masthead-brand">YUVA RAJINI-FIED SANGAMAM</span>
+        <div class="d-flex align-items-center gap-2">
+          <span id="live-date"></span>
+          <button id="btn-dark">🌙 Dark</button>
+          <button id="lang-toggle">↔ தமிழ்</button>
+        </div>
+      </div>
+      <div class="masthead-title text-center">
+        <h1>NEWS READING</h1>
+        <p class="masthead-sub">YUVA RAJINI-FIED SANGAMAM  CELEBRATING 51 YEARS OF RAJINIKANTH · OFFICIAL TELEPROMPTER EDITION</p>
+        <hr class="masthead-rule">
+      </div>
+    </div>
+  </header>
+
+  <!-- ================================
+       TICKER BAR
+       ================================ -->
+  <div id="ticker-bar">
+    <span class="ticker-label">📰 TICKER</span>
+    <div class="ticker-track">
+      <div class="ticker-inner">
+        <span>Sangamam 2025 News Reading Competition Underway at A.M. Jain College! 🌟 51 YEARS OF RAJINIKANTH: 1975–2026 — Celebrating half a century of cinematic dominance. 🎬 TELEPROMPTER RULES: Select a story, hit START, and read smoothly as the yellow guide line scrolls. 🏆 Five stories, five categories, one superstar — welcome to the Rajini-fied Sangamam! 📰</span>
+        <span>Sangamam 2025 News Reading Competition Underway at A.M. Jain College! 🌟 51 YEARS OF RAJINIKANTH: 1975–2026 — Celebrating half a century of cinematic dominance. 🎬 TELEPROMPTER RULES: Select a story, hit START, and read smoothly as the yellow guide line scrolls. 🏆 Five stories, five categories, one superstar — welcome to the Rajini-fied Sangamam! 📰</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================
+       MAIN CONTENT
+       ================================ -->
+  <main class="container-fluid py-3">
+
+    <!-- FILTER BAR -->
+    <div id="filter-bar" class="d-flex flex-wrap align-items-center gap-2 mb-3">
+      <strong id="edition-title">TODAY'S EDITION — 5 COMPETITION STORIES</strong>
+      <span class="ms-auto d-flex gap-1 flex-wrap">
+        <button class="filter-btn filter-active" data-filter="all">ALL STORIES</button>
+        <button class="filter-btn" data-filter="special-report">SPECIAL REPORT</button>
+        <button class="filter-btn" data-filter="politics">POLITICS</button>
+        <button class="filter-btn" data-filter="tech-cinema">TECH &amp; CINEMA</button>
+        <button class="filter-btn" data-filter="human-interest">HUMAN INTEREST</button>
+        <button class="filter-btn" data-filter="culture">CULTURE</button>
+      </span>
+    </div>
+
+    <!-- INSTRUCTION ROW -->
+    <div id="instructions-bar" class="d-flex justify-content-between align-items-center mb-2">
+      <div>
+        <strong id="instructions-title">INSTRUCTIONS FOR PARTICIPANTS</strong><br>
+        <small id="instructions-text">Select any of the 5 stories below to launch the teleprompter modal. Press START to initiate auto-scroll at ~150 WPM.</small>
+      </div>
+      <small>⏱ ESTIMATED READ: ~2 MINS / STORY</small>
+    </div>
+
+    <!-- STORY GRID -->
+    <div class="row g-0" id="story-grid">
+      <!-- Cards injected by JS -->
+    </div>
+
+  </main>
+
+  <!-- ================================
+       MODAL OVERLAY
+       ================================ -->
+  <div id="modal-overlay">
+    <div id="modal-box">
+
+      <!-- MODAL HEADER -->
+      <div id="modal-header">
+        <div id="modal-meta">
+          <span class="category-pill" id="modal-category-pill">SPECIAL REPORT</span>
+          <span class="story-badge" id="modal-story-badge">STORY 01</span>
+          <span id="modal-target-time">Target: 02:00 Mins</span>
+        </div>
+        <div id="modal-header-actions">
+          <button id="btn-fullscreen" title="Fullscreen">⛶</button>
+          <button id="btn-close-modal" title="Close (Esc)">✕</button>
+        </div>
+      </div>
+
+      <!-- MODAL TITLE AREA -->
+      <div id="modal-title-area">
+        <h2 id="modal-headline"></h2>
+        <p id="modal-byline">By Special Correspondent · Yuva Rajini-fied Sangamam Desk</p>
+        <input type="text" id="participant-name" placeholder="Enter participant name...">
+      </div>
+
+      <!-- SCROLL VIEWPORT -->
+      <div id="scroll-viewport">
+        <div id="script-body"></div>
+      </div>
+
+      <!-- PROGRESS BAR -->
+      <div id="progress-track">
+        <div id="progress-fill"></div>
+      </div>
+
+      <!-- STATS BAR -->
+      <div id="stats-bar">
+        <div class="stat-block">
+          <span class="stat-label">PROGRESS</span>
+          <span class="stat-value" id="stat-progress">0%</span>
+        </div>
+        <div class="stat-block">
+          <span class="stat-label">PACE</span>
+          <span class="stat-value" id="stat-pace">150 WPM</span>
+        </div>
+        <div class="stat-block">
+          <span class="stat-label">TIME LEFT</span>
+          <span class="stat-value" id="stat-timeleft">2:00</span>
+        </div>
+      </div>
+
+      <!-- MODAL CONTROLS -->
+      <div id="modal-controls">
+
+        <div class="control-row">
+
+          <!-- Left: Play controls -->
+          <div id="controls-left">
+            <button id="btn-start">▶ START</button>
+            <button id="btn-pause" disabled>⏸ PAUSE</button>
+            <button id="btn-reset">↺ RESET</button>
+          </div>
+
+          <!-- Right: Sliders -->
+          <div id="controls-sliders">
+
+            <div class="slider-group">
+              <span class="slider-label">Scroll Speed</span>
+              <input type="range" id="speed-slider" min="1" max="10" step="1" value="3">
+              <span class="slider-tag" id="speed-label">Lvl 2</span>
+            </div>
+
+            <div class="slider-group">
+              <span class="slider-label">Text Size</span>
+              <input type="range" id="font-slider" min="14" max="30" step="2" value="20">
+              <span class="slider-tag" id="font-label">20px</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================================
+       FOOTER
+       ================================ -->
+  <footer id="footer">
+    <div class="container-fluid">
+      <div class="row align-items-center py-3">
+
+        <div class="col-12 col-md-4">
+          <strong>YUVA RAJINI-FIED SANGAMAM 2025</strong><br>
+          <small>Intra-Collegiate News Reading Competition · A.M. Jain College, Chennai</small><br>
+          <small>For Competition Use Only · Celebrating 51 Years of Rajinikanth (1975–2026)</small>
+        </div>
+
+        <div class="col-12 col-md-4 my-3 my-md-0">
+          <div class="shortcut-box">
+            <strong>⌨ Teleprompter Shortcuts:</strong><br>
+            <code>SPACE</code>: Play/Pause &nbsp;
+            <code>ESC</code>: Close Modal &nbsp;
+            <code>R</code>: Reset Scroll
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4 text-md-end">
+          <em>"Naan oru thadavai sonna, nooru thadavai sonna maadiri."</em><br>
+          <small>Crafted with ❤ for A.M. Jain College Cultural Event</small>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- External JS -->
+  <script src="script.js"></script>
+</body>
+</html>
